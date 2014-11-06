@@ -1,4 +1,4 @@
-grunt-json-bigint
+grunt-relaxed-json
 =================
 
-Grunt for json-bigint
+Grunt for relaxed-json
