@@ -43,7 +43,7 @@ module.exports = function (grunt) {
       });
 
       if ( failed > 0 ) {
-        grunt.log.error('Please correct the warning above \n', failures);
+        grunt.log.error('Validation failed. \n', failures);
       } else {
         grunt.log.ok("No warnings!");
       }
