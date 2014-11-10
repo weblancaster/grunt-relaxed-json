@@ -10,6 +10,7 @@ module.exports = function(grunt) {
           'test/valid.json',
           'test/valid-2.json'
         ],
+        tolerant: true,
         duplicate: true
       }
     }
