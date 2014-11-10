@@ -19,7 +19,6 @@ module.exports = function(grunt) {
 
   require('./tasks/relaxed-json')(grunt);
 
-
   // Default task(s).
   grunt.registerTask('validate', [ 'rjson']);
 
