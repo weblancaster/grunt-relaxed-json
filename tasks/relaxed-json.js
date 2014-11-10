@@ -19,10 +19,13 @@ module.exports = function (grunt) {
     if (options.src != null) {
       var fileContent
         , failures = []
-        , failedObj = {}
+        , failedObj = {
+            file: null,
+            warning: null
+          }
         , failed = 0;
 
-      options.src.forEach(function (file) {
+      options.src.forEach(function (file, i) {
         grunt.log.ok('Validating:', file);
 
         fileContent = grunt.file.read(file, [{
@@ -36,20 +39,19 @@ module.exports = function (grunt) {
             tolerant: options.tolerant || false,
             duplicate: options.duplicate || false
           });
+
+          grunt.log.ok("No warnings!");
+
         } catch(e) {
+
           failed++;
-          failedObj["file"] = file;
-          failedObj["message"] = e;
-          failures.push(failedObj);
+          failedObj.file = file;
+          failedObj.warning = e;
+
+          grunt.log.error('Validation failed. \n', failedObj);
         }
 
       });
-
-      if ( failed > 0 ) {
-        grunt.log.error('Validation failed. \n', failures);
-      } else {
-        grunt.log.ok("No warnings!");
-      }
 
     }
 

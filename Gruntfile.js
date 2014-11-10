@@ -10,6 +10,7 @@ module.exports = function(grunt) {
           'test/valid.json',
           'test/valid-2.json'
         ],
+        tolerant: true,
         duplicate: true
       }
     }
@@ -17,7 +18,6 @@ module.exports = function(grunt) {
   });
 
   require('./tasks/relaxed-json')(grunt);
-
 
   // Default task(s).
   grunt.registerTask('validate', [ 'rjson']);
