@@ -8,20 +8,21 @@
 
 "use strict";
 
-var fs = require('fs');
 var rjson = require('relaxed-json');
 
 module.exports = function (grunt) {
 
-  grunt.registerMultiTask("rjson", "Validate JSON files with duplicated keys.", function () {
+  grunt.registerTask("rjson", "Validate JSON files", function () {
+
+    var options = this.options();
     
-    if (this.files != null) {
+    if (options.src != null) {
       var fileContent
         , failures = []
         , failedObj = {}
         , failed = 0;
 
-      this.filesSrc.forEach(function (file) {
+      options.src.forEach(function (file) {
         grunt.log.ok('Validating:', file);
 
         fileContent = grunt.file.read(file, [{
@@ -29,9 +30,11 @@ module.exports = function (grunt) {
         }]);
 
         try {
-          rjson.parse(fileContent, { 
-            tolerant: true,
-            duplicate: true
+          rjson.parse(fileContent, {
+            relaxed: options.relaxed || true,
+            warnings: options.warnings || false,
+            tolerant: options.tolerant || false,
+            duplicate: options.duplicate || false
           });
         } catch(e) {
           failed++;

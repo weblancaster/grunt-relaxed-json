@@ -5,17 +5,18 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     rjson: {
-      sample: {
+      options: {
         src: [
           'test/valid.json',
           'test/valid-2.json'
-        ]
+        ],
+        duplicate: true
       }
     }
 
   });
 
-   require('./tasks/relaxed-json')(grunt);
+  require('./tasks/relaxed-json')(grunt);
 
 
   // Default task(s).
