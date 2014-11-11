@@ -1,6 +1,6 @@
 {
   "name": "grunt-relaxed-json",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Relaxed JSON is strict superset JSON, relaxing strictness of valilla JSON",
   "main": "index.js",
   "scripts": {
