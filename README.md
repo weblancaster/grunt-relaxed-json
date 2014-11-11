@@ -40,6 +40,7 @@ An error will be thrown if the JSON file contains syntax errors related to the o
 
 * 2014-11-11   v1.0.0   First official release
 * 2014-11-11   v1.0.1   Code refactoring
+* 2014-11-11   v1.0.2   Fix warning messages
 
 ### Contributing
  

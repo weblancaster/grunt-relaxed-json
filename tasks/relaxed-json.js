@@ -50,7 +50,11 @@ module.exports = function (grunt) {
           failedObj.file = file;
           failedObj.warning = JSON.stringify(e);
 
-          grunt.log.error('Validation failed. \n', failedObj);
+          if ( e.warnings == undefined ) {
+            grunt.log.ok("Validated");
+          } else {
+            grunt.log.error('Validation failed. \n', failedObj);
+          }
         }
 
       });
