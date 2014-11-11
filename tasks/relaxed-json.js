@@ -22,8 +22,7 @@ module.exports = function (grunt) {
         , failedObj = {
             file: null,
             warning: null
-          }
-        , failed = 0;
+          };
 
       options.src.forEach(function (file, i) {
         grunt.log.ok('Validating:', file);
@@ -48,7 +47,6 @@ module.exports = function (grunt) {
           // and pollute the message warning
           delete e.obj;
 
-          failed++;
           failedObj.file = file;
           failedObj.warning = JSON.stringify(e);
 
