@@ -1,7 +1,7 @@
 {
   "name": "grunt-relaxed-json",
   "version": "1.0.0",
-  "description": "grunt-relaxed-json",
+  "description": "Relaxed JSON is strict superset JSON, relaxing strictness of valilla JSON",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

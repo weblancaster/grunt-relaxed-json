@@ -44,9 +44,13 @@ module.exports = function (grunt) {
 
         } catch(e) {
 
+          // delete the obj to not print the json data
+          // and pollute the message warning
+          delete e.obj;
+
           failed++;
           failedObj.file = file;
-          failedObj.warning = e;
+          failedObj.warning = JSON.stringify(e);
 
           grunt.log.error('Validation failed. \n', failedObj);
         }
