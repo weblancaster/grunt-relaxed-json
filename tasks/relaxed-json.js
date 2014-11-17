@@ -16,50 +16,52 @@ module.exports = function (grunt) {
 
     var options = this.options();
     
-    if (options.src != null) {
-      var fileContent
-        , failures = []
-        , failedObj = {
-            file: null,
-            warning: null
-          };
-
-      options.src.forEach(function (file, i) {
-        grunt.log.ok('Validating:', file);
-
-        fileContent = grunt.file.read(file, [{
-          encoding: "utf-8"
-        }]);
-
-        try {
-          rjson.parse(fileContent, {
-            relaxed: options.relaxed || true,
-            warnings: options.warnings || false,
-            tolerant: options.tolerant || false,
-            duplicate: options.duplicate || false
-          });
-
-          grunt.log.ok("No warnings!");
-
-        } catch(e) {
-
-          // delete the obj to not print the json data
-          // and pollute the message warning
-          delete e.obj;
-
-          failedObj.file = file;
-          failedObj.warning = JSON.stringify(e);
-
-          if ( e.warnings == undefined ) {
-            grunt.log.ok("Validated");
-          } else {
-            grunt.log.error('Validation failed. \n', failedObj);
-          }
-        }
-
-      });
-
+    if ( options.src === undefined ) {
+      throw new Error('[src] option not defined.');
+      return;
     }
+
+    var fileContent
+    , src = grunt.file.expand(options.src)
+    , failedObj = {
+        file: null,
+        warning: null
+      };
+
+    src.forEach(function (file, i) {
+      grunt.log.ok('Validating:', file);
+
+      fileContent = grunt.file.read(file, [{
+        encoding: "utf-8"
+      }]);
+
+      try {
+        rjson.parse(fileContent, {
+          relaxed: options.relaxed || true,
+          warnings: options.warnings || false,
+          tolerant: options.tolerant || false,
+          duplicate: options.duplicate || false
+        });
+
+        grunt.log.ok("No warnings!");
+
+      } catch(e) {
+
+        // delete the obj to not print the json data
+        // and pollute the message warning
+        delete e.obj;
+
+        failedObj.file = file;
+        failedObj.warning = JSON.stringify(e);
+
+        if ( e.warnings == undefined ) {
+          grunt.log.ok("Validated");
+        } else {
+          grunt.log.error('Validation failed. \n', failedObj);
+        }
+      }
+
+    });
 
   });
 };

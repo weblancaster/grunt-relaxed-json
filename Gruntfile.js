@@ -7,8 +7,7 @@ module.exports = function(grunt) {
     rjson: {
       options: {
         src: [
-          'test/valid.json',
-          'test/invalid.json'
+          'test/**/*.json'
         ],
         tolerant: true,
         duplicate: true
